@@ -50,8 +50,8 @@ for lang in languages:
             # "--chunk_size", str(chunk_size),
             "--save_path", save_path,
             "--wer_save_path", wer_save_path,
-            # "--prompt",str(prompt),
             # "--apply_lora",str(apply_lora),
+            # "--prompt",str(prompt),
             # "--beam_search",str(beam_search)
         ], check=True)
         

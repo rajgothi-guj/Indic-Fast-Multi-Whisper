@@ -178,3 +178,36 @@ python finetuning/hf_finetune_lora.py
 ## Inference
 
 
+```
+Config/
+│   ├── HF_train/
+|        ├──  ....
+    ├── test
+         ├──  run.py #kathbath testing
+         ├──  fleurs_run.py
+         ├──  spni_run.py
+```
+
+set the required parameters in each testing run file... All the parameters are self-explanatory...
+
+Kathbath evaluation:
+
+```python
+python Config/test/run.py
+```
+
+Fleurs evaluation:
+
+```python
+python Config/test/fleurs_run.py
+```
+
+SPNI evaluation:
+
+```python
+python Config/test/spni_run.py
+```
+
+if you don't want to use beam_search and prompting then make sure you comment below line...
+    # "--prompt",str(prompt),
+    # "--beam_search",str(beam_search)
