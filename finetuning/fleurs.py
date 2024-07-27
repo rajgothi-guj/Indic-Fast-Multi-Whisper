@@ -110,9 +110,7 @@ def process(language,fleurs,save_path):
 
 if __name__ == "__main__":
     languages = [ "hi","gu", "mr", "bn", "ta", "te", "kn", "ml"]
-    # language = 'hindi'
     model_path = "openai/whisper-medium"
-    save_path = '/hdd2/raj/preprocess/hindi_fleurs_medium'
     for language in languages:
         process(language=language,fleurs = language+"_in",save_path=f"/hdd2/raj/preprocess/{language}_fleurs_medium")
         

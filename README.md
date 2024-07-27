@@ -40,6 +40,47 @@ datasets/
 
 ## Dataset Pre-processing
 
+### kathbath
+
+```python
+python finetuning/kathbath.py
+```
+    model_path = "openai/whisper-medium" # openai/whisper-large-v3
+
+set model_path based on the model name (as in Huggingface)...
+
+and save_path argument to process function...
+
+It will store the pre-processed dataset to mentioned save_path location for all the languages,which will be used in fine-tuning step.
+
+Code will read the bucket.csv files of all the language that we created in earlier step.
+
+make sure to remove cached dataset at location /hdd/Gothi_raj/HF_model/
+
+ex. rm cache_gujarati_train.txt cache_gujarati_val.txt
+
+
+### Fleurs
+
+```python
+python finetuning/fleurs.py
+```
+
+    model_path = "openai/whisper-medium" # openai/whisper-large-v3
+
+set model_path based on the model name (as in Huggingface)...
+
+and save_path argument to process function...
+
+It will store the pre-processed dataset to mentioned save_path location for all the languages,which will be used in fine-tuning step.
+
+Code will read the dowloaded fleurs dataset of all the language that we downloaded in earlier step.
+
+make sure to remove cached dataset at location /hdd/Gothi_raj/HF_model/
+
+ex. rm cache_gu_train.txt cache_gu_val.txt
+(Here it is language code as per fleurs.. Look at code..)
+
 
 ## Fine-tuning
 

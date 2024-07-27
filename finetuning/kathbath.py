@@ -14,33 +14,31 @@ from whisper.normalizers import IndicTextNormalizer
 from datasets import DatasetDict,Dataset,concatenate_datasets
 # /hdd/Gothi_raj/Whisper/dataset/kathbath/kb_data_clean_wav/hindi/valid/bucket.csv
 
-train_path = "/hdd/Gothi_raj/Whisper/dataset/kathbath/kb_data_clean_wav/hindi/train/bucket.csv"
-dev_path = "/hdd/Gothi_raj/Whisper/dataset/kathbath/kb_data_clean_wav/hindi/valid/bucket.csv"
-language = 'hindi'
-model_path = "openai/whisper-large-v3"
-# model_path = "openai/whisper-medium"
-# save_path = '/hdd2/raj/preprocess/hindi_kathbath_largev3'
-save_path = 'HFDataset/hindi_kathbath_largev3'
-
 chars_to_ignore_regex = '[\,\?\.\!\-\;\:\"]'
 
-def remove_special_characters(batch):
-    batch["transcription"] = normalizer(batch["transcription"])
-    return batch
+def process(language,save_path):
+    train_path = f"/hdd/Gothi_raj/Whisper/dataset/kathbath/kb_data_clean_wav/{language}/train/bucket.csv"
+    dev_path = f"/hdd/Gothi_raj/Whisper/dataset/kathbath/kb_data_clean_wav/{language}/valid/bucket.csv"
+    # language = 'hindi'
+    # model_path = "openai/whisper-large-v3"
+    # save_path = '/hdd2/raj/preprocess/hindi_kathbath_largev3'
+    # save_path = 'HFDataset/hindi_kathbath_largev3'
 
-def prepare_dataset(batch):
-    # load and resample audio data from 48 to 16kHz
-    audio = batch["path"]
+    def remove_special_characters(batch):
+        batch["transcription"] = normalizer(batch["transcription"])
+        return batch
 
-    # compute log-Mel input features from input audio array 
-    batch["input_features"] = feature_extractor(audio["array"], sampling_rate=audio["sampling_rate"]).input_features[0]
+    def prepare_dataset(batch):
+        # load and resample audio data from 48 to 16kHz
+        audio = batch["path"]
 
-    # encode target text to label ids 
-    batch["labels"] = tokenizer(batch["transcription"]).input_ids
-    return batch
+        # compute log-Mel input features from input audio array 
+        batch["input_features"] = feature_extractor(audio["array"], sampling_rate=audio["sampling_rate"]).input_features[0]
 
-
-if __name__ == "__main__":
+        # encode target text to label ids 
+        batch["labels"] = tokenizer(batch["transcription"]).input_ids
+        return batch
+    
     audio = []
     transcript= []
 
@@ -110,38 +108,9 @@ if __name__ == "__main__":
 
     dataset = dataset.cast_column("path", Audio(sampling_rate=16000))
 
-    # dataset['train'] = dataset['train'].select(range(10000))
-    # dataset['validation'] = dataset['validation'].select(range(1000))
-    
-    # dataset = dataset.flatten_indices()
+    # dataset['train'] = dataset['train'].select(range(100))
+    # dataset['validation'] = dataset['validation'].select(range(100))
 
-    # Function to split dataset into chunks
-    # def split_dataset(dataset, chunk_size):
-    #     return [dataset.shard(num_shards=len(dataset)//chunk_size, index=i) for i in range((len(dataset) + chunk_size - 1) // chunk_size)]
-
-    # # Function to process each chunk
-    # def process_chunk(chunk):
-    #     return chunk.map(prepare_dataset, remove_columns=chunk.column_names, num_proc=1)
-
-    # # Split the dataset into chunks
-    # chunk_size = 25000
-    # chunks = split_dataset(dataset['train'], chunk_size)
-
-    # # Process each chunk separately
-    # processed_chunks = [process_chunk(chunk) for chunk in chunks]
-
-    # # Concatenate the processed chunks back together
-    # processed_dataset = concatenate_datasets(processed_chunks)
-
-    #  dataset = dataset.map(prepare_dataset, remove_columns=dataset.column_names["train"], num_proc=1)
-    # dataset['train']  = processed_dataset
-    # dataset['validation'] = dataset['validation'].map(prepare_dataset, remove_columns=dataset.column_names["validation"], num_proc=1)
-    
-    # dataset = dataset.shard(num_shards=4, index=0)
-    
-    # dataset['train']
-    
-    # dataset = dataset.map(prepare_dataset, remove_columns=dataset.column_names["train"], num_proc=1,cache_file_name="/hdd/Gothi_raj/HF_model",keep_in_memory=False)
     print(dataset)
 
     dataset['train'] = dataset['train'].map(prepare_dataset, remove_columns=dataset.column_names["train"], num_proc=1,cache_file_name=f"/hdd/Gothi_raj/HF_model/cache_{language}_train.txt",keep_in_memory=False)
@@ -151,3 +120,10 @@ if __name__ == "__main__":
 
     dataset.save_to_disk(save_path)
 
+
+if __name__ == "__main__":
+    languages = [ "hindi","gujarati", "marathi", "bengali", "tamil", "telugu", "kannada", "malayalam"]
+    model_path = "openai/whisper-medium"
+    # save_path = '/hdd2/raj/preprocess/hindi_fleurs_medium'
+    for language in languages:
+        process(language=language,save_path=f"/hdd2/raj/preprocess/{language}_kathbath_medium_dummy")
