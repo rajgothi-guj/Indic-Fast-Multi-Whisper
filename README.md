@@ -87,6 +87,7 @@ ex. rm cache_gu_train.txt cache_gu_val.txt
 
 ## Fine-tuning
 
+```
 Config/
 │   ├── HF_train/
 |        ├──  multi.yaml
@@ -94,6 +95,7 @@ Config/
          ├──  multi_lora.yaml
     ├── test
         ....
+```
 
 This config folder contains the yaml file which is useful to set parameters for training the model.
 
