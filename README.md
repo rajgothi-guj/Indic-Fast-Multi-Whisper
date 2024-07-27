@@ -15,14 +15,28 @@ datasets/
 
 Dataset link : https://huggingface.co/datasets/google/fleurs
 
-
+```python
+python fleurs_download.py
+```
 
 ### Kathbath
 
 Dataset Link: https://github.com/AI4Bharat/IndicSUPERB
 
+Follow this instructions https://github.com/AI4Bharat/IndicSUPERB#data-preprocessing after downloading dataset.
 
+It will create bucket.csv file for each language.
 
+```
+datasets/
+│   ├── HF/
+│   ├── Kathbath/
+        ├──  kb_data_clean_wav/
+            ├── hindi
+                ├── train 
+                    ├── bucket.csv
+                ....
+```
 
 ## Dataset Pre-processing
 
