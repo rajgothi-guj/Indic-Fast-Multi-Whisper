@@ -1,5 +1,5 @@
 model_name: "openai/whisper-medium"
-language: "Gujarati"
+language: "Gujarati" #set any language ... it is necessary to set but there is no any relation with multilingual FT.
 sampling_rate: 16000
 num_proc: 2
 train_strategy: "steps"
@@ -25,11 +25,6 @@ train_datasets:
   - "/hdd2/raj/preprocess/telugu_kathbath_medium_Alltokenized_125"
   - "/hdd2/raj/preprocess/kannada_kathbath_medium_Alltokenized_125"  
   - "/hdd2/raj/preprocess/malayalam_kathbath_medium_Alltokenized_125"  
-  # Add more datasets as needed
-# train_dataset_configs:
-#   - "config1"
-#   - "config2"
-#   # Add more configs as needed
 train_dataset_splits:
   - "train"
   - "train"
@@ -39,11 +34,6 @@ train_dataset_splits:
   - "train"
   - "train"
   - "train"
-  # Add more splits as needed
-# train_dataset_text_columns:
-#   - "text_column1"
-#   - "text_column2"
-#   # Add more text columns as needed
 eval_datasets:
   - "/hdd2/raj/preprocess/hindi_kathbath_medium_Alltokenized_125"
   - "/hdd2/raj/preprocess/gujarati_kathbath_medium_Alltokenized_125"
@@ -53,11 +43,6 @@ eval_datasets:
   - "/hdd2/raj/preprocess/telugu_kathbath_medium_Alltokenized_125"
   - "/hdd2/raj/preprocess/kannada_kathbath_medium_Alltokenized_125"  
   - "/hdd2/raj/preprocess/malayalam_kathbath_medium_Alltokenized_125"  
-  # Add more datasets as needed
-# eval_dataset_configs:
-#   - "config1"
-#   - "config2"
-#   # Add more configs as needed
 eval_dataset_splits:
   - "validation"
   - "validation"
@@ -67,9 +52,4 @@ eval_dataset_splits:
   - "validation"
   - "validation"
   - "validation"
-  # Add more splits as needed
-# eval_dataset_text_columns:
-#   - "text_column1"
-#   - "text_column2"
-  # Add more text columns as needed
 seed: 1

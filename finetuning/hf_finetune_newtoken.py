@@ -16,7 +16,7 @@ current_directory = os.getcwd()
 sys.path.append(current_directory)
 from whisper.normalizers import IndicTextNormalizer
 
-from transformers.models.whisper.english_normalizer import BasicTextNormalizer
+# from transformers.models.whisper.english_normalizer import BasicTextNormalizer
 
 from transformers import WhisperFeatureExtractor, WhisperTokenizer, WhisperProcessor, WhisperForConditionalGeneration, Seq2SeqTrainingArguments, Seq2SeqTrainer
 

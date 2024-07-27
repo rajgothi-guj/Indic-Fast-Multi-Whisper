@@ -43,7 +43,7 @@ def run(train_path,text_save_path):
 
     new_tokenizer = Tokenizer(models.BPE())
     new_tokenizer.pre_tokenizer = pre_tokenizers.ByteLevel(add_prefix_space=False)
-    trainer = trainers.BpeTrainer(vocab_size=250)
+    trainer = trainers.BpeTrainer(vocab_size=vocab_size)
     train_file = text_save_path
     new_tokenizer.train([train_file], trainer=trainer)
     new_tokenizer.post_processor = processors.ByteLevel(trim_offsets=False)
@@ -106,8 +106,9 @@ def create_tokenizer(decoded_tokens,model_path,tokenizer_save_path):
 #                 ]
 
 lang = ["hindi", "gujarati", "marathi", "bengali", "tamil", "telugu", "kannada", "malayalam"]
-tokenizer_save_path = "tokenizer/all_tokenizer_125"
+tokenizer_save_path = "tokenizer/all_tokenizer_250"
 model_path = "openai/whisper-medium"
+vocab_size = 250
 # language = 'gujarati'
 
 decoded_tokens = []

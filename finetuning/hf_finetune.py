@@ -136,8 +136,8 @@ if freeze_encoder:
 model.config.forced_decoder_ids = None
 model.config.suppress_tokens = []
 model.config.apply_spec_augment = True
-model.config.mask_time_prob = 0.05
-model.config.mask_feature_prob = 0.05
+# model.config.mask_time_prob = 0.05
+# model.config.mask_feature_prob = 0.05
 
 
 if gradient_checkpointing:

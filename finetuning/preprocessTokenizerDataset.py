@@ -14,32 +14,30 @@ from whisper.normalizers import IndicTextNormalizer
 from datasets import DatasetDict,Dataset
 # /hdd/Gothi_raj/Whisper/dataset/kathbath/kb_data_clean_wav/hindi/valid/bucket.csv
 
-language = 'malayalam'
-train_path = f"/hdd/Gothi_raj/Whisper/dataset/kathbath/kb_data_clean_wav/{language}/train/bucket.csv"
-dev_path = f"/hdd/Gothi_raj/Whisper/dataset/kathbath/kb_data_clean_wav/{language}/valid/bucket.csv"
-model_path = "openai/whisper-medium"
-save_path = f'/hdd2/raj/preprocess/{language}_kathbath_medium_Alltokenized_125'
-tokenizer_path = 'tokenizer/all_tokenizer_125'
 
 chars_to_ignore_regex = '[\,\?\.\!\-\;\:\"]'
 
-def remove_special_characters(batch):
-    batch["transcription"] = normalizer(batch["transcription"])
-    return batch
 
-def prepare_dataset(batch):
-    # load and resample audio data from 48 to 16kHz
-    audio = batch["path"]
+def process(language,save_path):
 
-    # compute log-Mel input features from input audio array 
-    batch["input_features"] = feature_extractor(audio["array"], sampling_rate=audio["sampling_rate"]).input_features[0]
+    train_path = f"/hdd/Gothi_raj/Whisper/dataset/kathbath/kb_data_clean_wav/{language}/train/bucket.csv"
+    dev_path = f"/hdd/Gothi_raj/Whisper/dataset/kathbath/kb_data_clean_wav/{language}/valid/bucket.csv"
 
-    # encode target text to label ids 
-    batch["labels"] = tokenizer(batch["transcription"]).input_ids
-    return batch
+    def remove_special_characters(batch):
+        batch["transcription"] = normalizer(batch["transcription"])
+        return batch
 
+    def prepare_dataset(batch):
+        # load and resample audio data from 48 to 16kHz
+        audio = batch["path"]
 
-if __name__ == "__main__":
+        # compute log-Mel input features from input audio array 
+        batch["input_features"] = feature_extractor(audio["array"], sampling_rate=audio["sampling_rate"]).input_features[0]
+
+        # encode target text to label ids 
+        batch["labels"] = tokenizer(batch["transcription"]).input_ids
+        return batch
+
     audio = []
     transcript= []
 
@@ -113,8 +111,8 @@ if __name__ == "__main__":
 
     dataset = dataset.cast_column("path", Audio(sampling_rate=16000))
 
-    # dataset['train'] = dataset['train'].select(range(10000))
-    # dataset['validation'] = dataset['validation'].select(range(1000))
+    # dataset['train'] = dataset['train'].select(range(100))
+    # dataset['validation'] = dataset['validation'].select(range(100))
 
     # dataset = dataset.map(prepare_dataset, remove_columns=dataset.column_names["train"], num_proc=1)
 
@@ -124,4 +122,14 @@ if __name__ == "__main__":
     print(dataset)
 
     dataset.save_to_disk(save_path)
+
+
+if __name__ == "__main__":
+
+    tokenizer_path = 'tokenizer/all_tokenizer_125'
+    languages = [ "hindi","gujarati", "marathi", "bengali", "tamil", "telugu", "kannada", "malayalam"]
+    model_path = "openai/whisper-medium"
+ 
+    for language in languages:
+        process(language=language,save_path=f"/hdd2/raj/preprocess/{language}_kathbath_medium_Alltokenized_125_dummy")
 

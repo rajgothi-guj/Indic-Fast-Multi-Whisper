@@ -1,6 +1,6 @@
-# model_name: "openai/whisper-medium"
-model_name: "trained_model/multi_baseline/checkpoint-27500"
-language: "Hindi"
+model_name: "openai/whisper-medium"
+# model_name: "trained_model/multi_baseline/checkpoint-27500"
+language: "Hindi" #set any language ... it is necessary to set but there is no any relation with multilingual FT.
 sampling_rate: 16000
 num_proc: 2
 train_strategy: "steps"
