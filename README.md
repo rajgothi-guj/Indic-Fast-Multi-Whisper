@@ -5,12 +5,11 @@ This repo contains the code of Indic-Fast-Multi-Whisper, written by Raj Gothi.
 ## Dataset Download
 
 dataset folder contain the downloaded dataset.
-
+```
 datasets/
 │   ├── HF/
-│   │   └── (files and folders related to HF dataset)
-│   └── Kathbath/
-│       └── (files and folders related to Kathbath dataset)
+│   ├── Kathbath/     
+```
 
 ### Fleurs
 
