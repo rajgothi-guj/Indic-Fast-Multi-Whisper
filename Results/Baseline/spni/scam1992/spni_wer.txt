@@ -1,0 +1,2 @@
+tamil WER: 78.54 % 
+telugu WER: 98.38 % 

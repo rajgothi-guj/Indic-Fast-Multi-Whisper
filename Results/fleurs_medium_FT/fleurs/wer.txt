@@ -1,0 +1,17 @@
+hindi WER: 16.64 % 
+gujarati WER: 26.99 % 
+marathi WER: 28.48 % 
+bengali WER: 24.63 % 
+tamil WER: 33.13 % 
+telugu WER: 32.27 % 
+kannada WER: 24.76 % 
+malayalam WER: 29.09 % 
+
+hindi WER: 15.82 % 
+gujarati WER: 26.82 % 
+marathi WER: 28.07 % 
+bengali WER: 24.63 % 
+tamil WER: 32.66 % 
+telugu WER: 32.03 % 
+kannada WER: 24.24 % 
+malayalam WER: 28.94 % 

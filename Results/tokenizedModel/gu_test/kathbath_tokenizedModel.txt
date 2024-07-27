@@ -1,0 +1,6 @@
+gujarati WER: 18.02 % 
+gujarati WER: 99.35 % 
+hindi WER: 90.00 % 
+hindi WER: 11.65 % 
+gujarati WER: 18.02 % 
+gujarati WER: 16.79 % 
