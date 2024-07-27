@@ -1,0 +1,56 @@
+# model_name: "openai/whisper-medium"
+model_name: "trained_model/multi_baseline/checkpoint-27500"
+language: "Hindi"
+sampling_rate: 16000
+num_proc: 2
+train_strategy: "steps"
+learning_rate: 1.00e-5
+warmup: 100
+train_batchsize: 16
+eval_batchsize: 16
+num_epochs: 3
+eval_steps: 400 
+save_steps: 400
+resume_from_ckpt: False
+output_dir: "trained_model/Kathbath_fleurs_medium_FT"
+
+prompting: False
+
+train_datasets:
+  - "/hdd2/raj/preprocess/hi_fleurs_medium"
+  - "/hdd2/raj/preprocess/gu_fleurs_medium"
+  - "/hdd2/raj/preprocess/mr_fleurs_medium"
+  - "/hdd2/raj/preprocess/bn_fleurs_medium"
+  - "/hdd2/raj/preprocess/ta_fleurs_medium"
+  - "/hdd2/raj/preprocess/te_fleurs_medium"
+  - "/hdd2/raj/preprocess/kn_fleurs_medium"
+  - "/hdd2/raj/preprocess/ml_fleurs_medium"
+train_dataset_splits:
+  - "train"
+  - "train"
+  - "train"
+  - "train"
+  - "train"
+  - "train"
+  - "train"
+  - "train"
+eval_datasets:
+  - "/hdd2/raj/preprocess/hi_fleurs_medium"
+  - "/hdd2/raj/preprocess/gu_fleurs_medium"
+  - "/hdd2/raj/preprocess/mr_fleurs_medium"
+  - "/hdd2/raj/preprocess/bn_fleurs_medium"
+  - "/hdd2/raj/preprocess/ta_fleurs_medium"
+  - "/hdd2/raj/preprocess/te_fleurs_medium"
+  - "/hdd2/raj/preprocess/kn_fleurs_medium"
+  - "/hdd2/raj/preprocess/ml_fleurs_medium"
+eval_dataset_splits:
+  - "validation"
+  - "validation"
+  - "validation"
+  - "validation"
+  - "validation"
+  - "validation"
+  - "validation"
+  - "validation"
+
+seed: 42

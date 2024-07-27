@@ -1,0 +1,76 @@
+model_name: "trained_model/multi_baseline"
+# model_name: "trained_model/multi_large_prompt"
+language: "Hindi"
+sampling_rate: 16000
+num_proc: 2
+train_strategy: "steps"
+learning_rate: 4.00e-4
+warmup: 500
+train_batchsize: 16
+eval_batchsize: 16
+num_epochs: 3
+# num_steps: 1000000
+resume_from_ckpt: False
+output_dir: "trained_model/multi_baseline_e2_dravidian_lora"
+
+apply_lora : True
+rank : 32
+prompting: False
+
+train_datasets:
+  # - "HFDataset/hindi_kathbath_medium"
+  # - "HFDataset/gujarati_kathbath_medium"
+  # - "HFDataset/marathi_kathbath_medium"
+  # - "HFDataset/bengali_kathbath_medium"
+  - "HFDataset/tamil_kathbath_medium"
+  - "HFDataset/telugu_kathbath_medium"
+  - "HFDataset/kannada_kathbath_medium"
+  - "HFDataset/malayalam_kathbath_medium"
+  # Add more datasets as needed
+# train_dataset_configs:
+#   - "config1"
+#   - "config2"
+#   # Add more configs as needed
+train_dataset_splits:
+  # - "train"
+  # - "train"
+  # - "train"
+  # - "train"
+  - "train"
+  - "train"
+  - "train"
+  - "train"
+  # Add more splits as needed
+# train_dataset_text_columns:
+#   - "text_column1"
+#   - "text_column2"
+#   # Add more text columns as needed
+eval_datasets:
+  # - "HFDataset/hindi_kathbath_medium"
+  # - "HFDataset/gujarati_kathbath_medium"
+  # - "HFDataset/marathi_kathbath_medium"
+  # - "HFDataset/bengali_kathbath_medium"
+  - "HFDataset/tamil_kathbath_medium"
+  - "HFDataset/telugu_kathbath_medium"
+  - "HFDataset/kannada_kathbath_medium"
+  - "HFDataset/malayalam_kathbath_medium"
+  # Add more datasets as needed
+# eval_dataset_configs:
+#   - "config1"
+#   - "config2"
+#   # Add more configs as needed
+eval_dataset_splits:
+  # - "validation"
+  # - "validation"
+  # - "validation"
+  # - "validation"
+  - "validation"
+  - "validation"
+  - "validation"
+  - "validation"
+  # Add more splits as needed
+# eval_dataset_text_columns:
+#   - "text_column1"
+#   - "text_column2"
+  # Add more text columns as needed
+seed: 1
