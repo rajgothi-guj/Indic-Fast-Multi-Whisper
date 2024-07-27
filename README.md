@@ -31,11 +31,11 @@ It will create bucket.csv file for each language.
 datasets/
 │   ├── HF/
 │   ├── Kathbath/
-        ├──  kb_data_clean_wav/
-            ├── hindi
-                ├── train 
-                    ├── bucket.csv
-                ....
+|        ├──  kb_data_clean_wav/
+|           ├── hindi
+|                ├── train 
+|                    ├── bucket.csv
+|                ....
 ```
 
 ## Dataset Pre-processing

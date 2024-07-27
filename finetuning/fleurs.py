@@ -57,7 +57,7 @@ def process(language,fleurs,save_path):
     transcript = dataset['validation']['transcription']
     for i in range(len(audio_paths)):
         audio_path = audio_paths[i]
-        audio_path = audio_path.replace('Whisper/dataset','dataset/dataset')
+        # audio_path = audio_path.replace('Whisper/dataset','dataset/dataset')
         ind=audio_path.rfind('/')
         audio_path = audio_path[:ind]+f'/dev'+audio_path[ind:]
         audio.append(audio_path)
