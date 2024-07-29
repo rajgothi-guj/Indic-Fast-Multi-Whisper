@@ -17,7 +17,6 @@ from datasets import DatasetDict,Dataset,concatenate_datasets
 
 chars_to_ignore_regex = '[\,\?\.\!\-\;\:\"]'
 
-
 def process(language,fleurs,save_path):
 
     def remove_special_characters(batch):
@@ -38,12 +37,12 @@ def process(language,fleurs,save_path):
     audio = []
     transcript= []
 
-    dataset = load_dataset("google/fleurs",fleurs,cache_dir='/hdd/Gothi_raj/dataset/dataset/HF')
+    dataset = load_dataset("google/fleurs",fleurs,cache_dir='/hdd/Gothi_raj/Whisper/dataset/HF')
     audio_paths = dataset['train']['path']
     transcript = dataset['train']['transcription']
     for i in range(len(audio_paths)):
         audio_path = audio_paths[i]
-        audio_path = audio_path.replace('Whisper/dataset','dataset/dataset')
+        # audio_path = audio_path.replace('Whisper/dataset','dataset/dataset')
         ind=audio_path.rfind('/')
         audio_path = audio_path[:ind]+f'/train'+audio_path[ind:]
         audio.append(audio_path)
@@ -84,6 +83,8 @@ def process(language,fleurs,save_path):
     # prompt_ids = tokenizer.get_prompt_ids(prompt)
 
     labels = tokenizer(input_str).input_ids
+    
+    print('tokenized sentence length',len(labels))
 
     # tokenizer = WhisperTokenizer.from_pretrained(model_path, language="Bengali", task="transcribe")
     # tokenizer.add_tokens(decoded_tokens)
@@ -99,18 +100,41 @@ def process(language,fleurs,save_path):
 
     dataset = dataset.cast_column("path", Audio(sampling_rate=16000))
 
-    # print(dataset)
+    # Define cache file paths
+    train_cache_path = f"/hdd/Gothi_raj/HF_model/cache_{language}_train.txt"
+    val_cache_path = f"/hdd/Gothi_raj/HF_model/cache_{language}_val.txt"
 
-    dataset['train'] = dataset['train'].map(prepare_dataset, remove_columns=dataset.column_names["train"], num_proc=1,cache_file_name=f"/hdd/Gothi_raj/HF_model/cache_{language}_train.txt",keep_in_memory=False)
-    dataset['validation'] = dataset['validation'].map(prepare_dataset, remove_columns=dataset.column_names["validation"], num_proc=1,cache_file_name=f"/hdd/Gothi_raj/HF_model/cache_{language}_val.txt",keep_in_memory=False)
-    
+    # Process dataset
+    dataset['train'] = dataset['train'].map(
+        prepare_dataset, 
+        remove_columns=dataset.column_names["train"], 
+        num_proc=1,
+        cache_file_name=train_cache_path,
+        keep_in_memory=False
+    )
+
+    dataset['validation'] = dataset['validation'].map(
+        prepare_dataset, 
+        remove_columns=dataset.column_names["validation"], 
+        num_proc=1,
+        cache_file_name=val_cache_path,
+        keep_in_memory=False
+    )
+
+    # Clean up cache files
+    if os.path.exists(train_cache_path):
+        os.remove(train_cache_path)
+    if os.path.exists(val_cache_path):
+        os.remove(val_cache_path)
+
     print(dataset)
 
     dataset.save_to_disk(save_path)
 
 if __name__ == "__main__":
     languages = [ "hi","gu", "mr", "bn", "ta", "te", "kn", "ml"]
-    model_path = "openai/whisper-medium"
+    model_path = "/hdd/Gothi_raj/Whisper/trained_model/Alltokenized_Medium_250" 
+    #model_path = "openai/whisper-medium"
     for language in languages:
-        process(language=language,fleurs = language+"_in",save_path=f"/hdd2/raj/preprocess/{language}_fleurs_medium")
+        process(language=language,fleurs = language+"_in",save_path=f"/hdd2/raj/preprocess/{language}_fleurs_medium_tokenizer250")
         

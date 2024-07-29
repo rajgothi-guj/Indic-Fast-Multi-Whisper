@@ -116,8 +116,32 @@ def process(language,save_path):
 
     # dataset = dataset.map(prepare_dataset, remove_columns=dataset.column_names["train"], num_proc=1)
 
-    dataset['train'] = dataset['train'].map(prepare_dataset, remove_columns=dataset.column_names["train"], num_proc=1,cache_file_name=f"/hdd/Gothi_raj/HF_model/cache_{language}_train.txt",keep_in_memory=False)
-    dataset['validation'] = dataset['validation'].map(prepare_dataset, remove_columns=dataset.column_names["validation"], num_proc=1,cache_file_name=f"/hdd/Gothi_raj/HF_model/cache_{language}_val.txt",keep_in_memory=False)
+    # Define cache file paths
+    train_cache_path = f"/hdd/Gothi_raj/HF_model/cache_{language}_train.txt"
+    val_cache_path = f"/hdd/Gothi_raj/HF_model/cache_{language}_val.txt"
+
+    # Process dataset
+    dataset['train'] = dataset['train'].map(
+        prepare_dataset, 
+        remove_columns=dataset.column_names["train"], 
+        num_proc=1,
+        cache_file_name=train_cache_path,
+        keep_in_memory=False
+    )
+
+    dataset['validation'] = dataset['validation'].map(
+        prepare_dataset, 
+        remove_columns=dataset.column_names["validation"], 
+        num_proc=1,
+        cache_file_name=val_cache_path,
+        keep_in_memory=False
+    )
+
+    # Clean up cache files
+    if os.path.exists(train_cache_path):
+        os.remove(train_cache_path)
+    if os.path.exists(val_cache_path):
+        os.remove(val_cache_path)
 
     print(dataset)
 

@@ -1,4 +1,4 @@
-model_name: "openai/whisper-medium"
+model_name: "/hdd/Gothi_raj/Whisper/trained_model/Alltokenized_Medium_250"
 language: "Gujarati" #set any language ... it is necessary to set but there is no any relation with multilingual FT.
 sampling_rate: 16000
 num_proc: 2
@@ -8,23 +8,25 @@ warmup: 500
 train_batchsize: 16
 eval_batchsize: 32
 num_epochs: 3
+eval_steps : 2000
+save_steps : 2000
 # num_steps: 1000000
 resume_from_ckpt: null
 prompting: False
 
-tokenizer_name : 'tokenizer/all_tokenizer_125'
+tokenizer_name : 'tokenizer/all_tokenizer_250'
 
-output_dir: "trained_model/Alltokenized_Medium_125"
+output_dir: "trained_model/Alltokenized_kathbath_fleurs_Medium_250"
 
 train_datasets:
-  - "/hdd2/raj/preprocess/hindi_kathbath_medium_Alltokenized_125"
-  - "/hdd2/raj/preprocess/gujarati_kathbath_medium_Alltokenized_125"
-  - "/hdd2/raj/preprocess/marathi_kathbath_medium_Alltokenized_125"
-  - "/hdd2/raj/preprocess/bengali_kathbath_medium_Alltokenized_125"
-  - "/hdd2/raj/preprocess/tamil_kathbath_medium_Alltokenized_125"
-  - "/hdd2/raj/preprocess/telugu_kathbath_medium_Alltokenized_125"
-  - "/hdd2/raj/preprocess/kannada_kathbath_medium_Alltokenized_125"  
-  - "/hdd2/raj/preprocess/malayalam_kathbath_medium_Alltokenized_125"  
+  - "/hdd2/raj/preprocess/hi_fleurs_medium_tokenizer250"
+  - "/hdd2/raj/preprocess/gu_fleurs_medium_tokenizer250"
+  - "/hdd2/raj/preprocess/mr_fleurs_medium_tokenizer250"
+  - "/hdd2/raj/preprocess/bn_fleurs_medium_tokenizer250"
+  - "/hdd2/raj/preprocess/ta_fleurs_medium_tokenizer250"
+  - "/hdd2/raj/preprocess/te_fleurs_medium_tokenizer250"
+  - "/hdd2/raj/preprocess/kn_fleurs_medium_tokenizer250"  
+  - "/hdd2/raj/preprocess/ml_fleurs_medium_tokenizer250"  
 train_dataset_splits:
   - "train"
   - "train"
@@ -35,14 +37,14 @@ train_dataset_splits:
   - "train"
   - "train"
 eval_datasets:
-  - "/hdd2/raj/preprocess/hindi_kathbath_medium_Alltokenized_125"
-  - "/hdd2/raj/preprocess/gujarati_kathbath_medium_Alltokenized_125"
-  - "/hdd2/raj/preprocess/marathi_kathbath_medium_Alltokenized_125"
-  - "/hdd2/raj/preprocess/bengali_kathbath_medium_Alltokenized_125"
-  - "/hdd2/raj/preprocess/tamil_kathbath_medium_Alltokenized_125"
-  - "/hdd2/raj/preprocess/telugu_kathbath_medium_Alltokenized_125"
-  - "/hdd2/raj/preprocess/kannada_kathbath_medium_Alltokenized_125"  
-  - "/hdd2/raj/preprocess/malayalam_kathbath_medium_Alltokenized_125"  
+  - "/hdd2/raj/preprocess/hi_fleurs_medium_tokenizer250"
+  - "/hdd2/raj/preprocess/gu_fleurs_medium_tokenizer250"
+  - "/hdd2/raj/preprocess/mr_fleurs_medium_tokenizer250"
+  - "/hdd2/raj/preprocess/bn_fleurs_medium_tokenizer250"
+  - "/hdd2/raj/preprocess/ta_fleurs_medium_tokenizer250"
+  - "/hdd2/raj/preprocess/te_fleurs_medium_tokenizer250"
+  - "/hdd2/raj/preprocess/kn_fleurs_medium_tokenizer250"  
+  - "/hdd2/raj/preprocess/ml_fleurs_medium_tokenizer250" 
 eval_dataset_splits:
   - "validation"
   - "validation"

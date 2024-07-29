@@ -209,5 +209,6 @@ python Config/test/spni_run.py
 ```
 
 if you don't want to use beam_search and prompting then make sure you comment below line...
+
     # "--prompt",str(prompt),
     # "--beam_search",str(beam_search)

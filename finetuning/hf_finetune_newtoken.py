@@ -34,30 +34,6 @@ os.environ['WANDB_DISABLED'] = 'true'
 # %env WANDB_ENTITY=
 # %env WANDB_PROJECT=your-project-name
 
-# torchrun --nproc_per_node=2 Whisper/finetuning/hf_finetune.py \
-# --model_name vasista22/whisper-hindi-base \
-# --language Hindi \
-# --sampling_rate 16000 \
-# --num_proc 2 \
-# --train_strategy steps \
-# --learning_rate 3e-3 \
-# --warmup 1000 \
-# --train_batchsize 16 \
-# --eval_batchsize 8 \
-# --num_steps 10000 \
-# --resume_from_ckpt None \
-# --output_dir op_dir_steps \
-# --train_datasets mozilla-foundation/common_voice_11_0 mozilla-foundation/common_voice_11_0 \
-# --train_dataset_configs hi hi \
-# --train_dataset_splits train validation \
-# --train_dataset_text_columns sentence sentence \
-# --eval_datasets "google/fleurs" \
-# --eval_dataset_configs hi_in \
-# --eval_dataset_splits test \
-# --eval_dataset_text_columns transcription
-
-# torchrun --nproc_per_node=2 Whisper/finetuning/hf_finetune.py --model_name openai/whisper-medium --language Hindi --sampling_rate 16000 --num_proc 2 --train_strategy steps --learning_rate 3e-3 --warmup 1000 --train_batchsize 16 --eval_batchsize 8 --num_steps 10000 --resume_from_ckpt None --output_dir op_dir_steps --train_datasets mozilla-foundation/common_voice_11_0 mozilla-foundation/common_voice_11_0 --train_dataset_configs hi hi --train_dataset_splits train validation --train_dataset_text_columns sentence sentence --eval_datasets "google/fleurs" --eval_dataset_configs hi_in --eval_dataset_splits test --eval_dataset_text_columns transcription
-
 # torchrun --nproc_per_node=3 finetuning/hf_finetune_newtoken.py
 
 # https://github.com/huggingface/distil-whisper/blame/914dcdf3919552d5a3826a9d5db99b059ddcc16e/training/run_distillation.py#LL389
@@ -241,7 +217,7 @@ def load_all_datasets(split):
             dataset = load_from_disk(ds)
             dataset = dataset[args.eval_dataset_splits[i]]
             dataset = dataset.shuffle(seed=args.seed)
-            dataset = dataset.select(range(750))
+            #dataset = dataset.select(range(750))
 
             if args.prompting:
                 if any(lang in ds for lang in ['hindi', 'gujarati', 'marathi', 'bengali']):
@@ -433,9 +409,9 @@ elif args.train_strategy == 'steps':
         fp16=True,
         evaluation_strategy="steps",
         num_train_epochs = args.num_epochs,
-        eval_steps=2000,
+        eval_steps=args.eval_steps,
         save_strategy="steps",
-        save_steps=2000,
+        save_steps=args.save_steps,
         # max_steps=args.num_steps,
         save_total_limit=3,
         per_device_eval_batch_size=args.eval_batchsize,
