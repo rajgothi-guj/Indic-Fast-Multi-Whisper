@@ -3,6 +3,7 @@
 This repo contains the code of Indic-Fast-Multi-Whisper, written by Raj Gothi.
 
 Use Whisper Enviroment for finetuning :  /hdd/Gothi_raj/envs/whisper
+
 Use wt Enviroment for Inference: /hdd/Gothi_raj/envs/wt
 
 ## Dataset Download
