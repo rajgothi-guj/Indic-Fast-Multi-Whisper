@@ -230,6 +230,8 @@ python Config/test/fleurs_run.py
 
 SPNI evaluation:
 
+SPNI_bucket.ipynb contains the code for how to create bucket.csv file.
+
 ```python
 python Config/test/spni_run.py
 ```
