@@ -2,6 +2,9 @@
 
 This repo contains the code of Indic-Fast-Multi-Whisper, written by Raj Gothi.
 
+Use Whisper Enviroment for finetuning :  /hdd/Gothi_raj/envs/whisper
+Use wt Enviroment for Inference: /hdd/Gothi_raj/envs/wt
+
 ## Dataset Download
 
 dataset folder contain the downloaded dataset.
@@ -57,9 +60,10 @@ It will store the pre-processed dataset to mentioned save_path location for all 
 
 Code will read the bucket.csv files of all the language that we created in earlier step.
 
-make sure to remove cached dataset at location /hdd/Gothi_raj/HF_model/
+make sure to remove cached dataset at location "/hdd/Gothi_raj/HF_model/"   (Enhancement: Now code will remove cache file automatically.)
 
 ex. rm cache_gujarati_train.txt cache_gujarati_val.txt
+
 
 
 ### Fleurs
@@ -79,7 +83,7 @@ It will store the pre-processed dataset to mentioned save_path location for all 
 
 Code will read the dowloaded fleurs dataset of all the language that we downloaded in earlier step.
 
-make sure to remove cached dataset at location /hdd/Gothi_raj/HF_model/
+make sure to remove cached dataset at location "/hdd/Gothi_raj/HF_model/"  (Enhancement: Now code will remove cache file automatically.)
 
 ex. rm cache_gu_train.txt cache_gu_val.txt
 (Here it is language code as per fleurs.. Look at code..)
@@ -151,7 +155,7 @@ It will store the pre-processed dataset to mentioned save_path location for all 
 
 Code will read the bucket.csv files of all the language that we created in earlier step.
 
-make sure to remove cached dataset at location /hdd/Gothi_raj/HF_model/
+make sure to remove cached dataset at location "/hdd/Gothi_raj/HF_model/"  (Enhancement: Now code will remove cache file automatically.)
 
 ex. rm cache_gujarati_train.txt cache_gujarati_val.txt
 
