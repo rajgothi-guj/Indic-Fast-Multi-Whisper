@@ -14,7 +14,7 @@ Whisper/
 │   ├── Results/  # It stores the results for each of the inferences... model name / dataset / csv,wer,log files...
 │   ├── tokenizer/ # Stored new tokenizers
 │   ├── trained_model/ # It stores the fine-tuned models
-│   ├── transformers/ # transformers model library code
+│   ├── transformers/ # transformers library code
 │   ├── whisper/ # original github whisper code
 ```
 
