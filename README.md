@@ -238,3 +238,5 @@ if you don't want to use beam_search and prompting then make sure you comment be
 
     # "--prompt",str(prompt),
     # "--beam_search",str(beam_search)
+
+if you want to measure time then comment beam search line as above and set batch size to 1. 
