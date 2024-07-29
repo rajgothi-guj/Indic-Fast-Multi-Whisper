@@ -2,9 +2,30 @@
 
 This repo contains the code of Indic-Fast-Multi-Whisper, written by Raj Gothi.
 
+## Folder Structure
+```
+Whisper/
+│   ├── Config/  # contains the yaml file for train and test.
+│   ├── dataset/ # stored the downloaded dataset of fleurs and kathbath
+│   ├── features/ # to get audiofeatures from whisper encoder (done initially, not required for ASR)
+│   ├── finetuning/ # It contains all the code of proposed technique with fine-tuning script.
+│   ├── IndicSUPERB/ # cloned repo of kathbath dataset
+│   ├── notebooks/ # This is jupyter notebook given by Original whisper code...
+│   ├── Results/  # It stores the results for each of the inferences... model name / dataset / csv,wer,log files...
+│   ├── tokenizer/ # Stored new tokenizers
+│   ├── trained_model/ # It stores the fine-tuned models
+│   ├── transformers/ # transformers model library code
+│   ├── whisper/ # original github whisper code
+```
+
+
+
 Use Whisper Enviroment for finetuning :  /hdd/Gothi_raj/envs/whisper
 
 Use wt Enviroment for Inference: /hdd/Gothi_raj/envs/wt
+
+
+
 
 ## Dataset Download
 
