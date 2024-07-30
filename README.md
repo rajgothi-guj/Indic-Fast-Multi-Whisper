@@ -65,6 +65,8 @@ datasets/
 
 ## Dataset Pre-processing
 
+It extract the log-mel features from the audio and encode the ground truth text into numbers, which is required for fine-tuning.
+
 ### kathbath
 
 ```python
