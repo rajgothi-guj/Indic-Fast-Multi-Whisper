@@ -246,3 +246,5 @@ if you don't want to use beam_search and prompting then make sure you comment be
     # "--beam_search",str(beam_search)
 
 if you want to measure time then comment beam search line as above and set batch size to 1. 
+
+All the experiment is done with batch_size=32 and beam_search = 5 (medium), 3 (large)
