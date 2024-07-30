@@ -147,7 +147,7 @@ def process(language,save_path):
 
 if __name__ == "__main__":
     languages = [ "hindi","gujarati", "marathi", "bengali", "tamil", "telugu", "kannada", "malayalam"]
-    model_path = "openai/whisper-medium"
+    model_path = "openai/whisper-small"
     # save_path = '/hdd2/raj/preprocess/hindi_fleurs_medium'
     for language in languages:
-        process(language=language,save_path=f"/hdd2/raj/preprocess/{language}_kathbath_medium_dummy")
+        process(language=language,save_path=f"/hdd2/raj/preprocess/{language}_kathbath_small")
