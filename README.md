@@ -149,6 +149,8 @@ torchrun --nproc_per_node=4 finetuning/hf_finetune.py
 
 ### Tokenizer FT
 
+BPE blog : https://huggingface.co/learn/nlp-course/en/chapter6/5
+
 set this 3 variables inside the ```finetuning/create_tokenizer.py```
 
 ```bash
